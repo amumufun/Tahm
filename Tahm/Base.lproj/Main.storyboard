@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Application-->
+        <scene sceneID="JPo-4y-FX3">
+            <objects>
+                <application id="hnw-xV-0zn" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                        <items>
+                            <menuItem title="Tahm" id="1Xt-HY-uBw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Tahm" systemMenu="apple" id="uQy-DD-JDr">
+                                    <items>
+                                        <menuItem title="About Tahm" id="5kV-Vb-QxS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
+                                        <menuItem title="Quit Tahm" keyEquivalent="q" id="4sb-4s-VLi">
+                                            <connections>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Help" id="wpr-3q-Mcd">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
+                                    <items>
+                                        <menuItem title="Tahm Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                            <connections>
+                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                    </connections>
+                </application>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Tahm" customModuleProvider="target"/>
+                <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="e7p-QH-s3W" customClass="StatusMenuController" customModule="Tahm" customModuleProvider="target">
+                    <connections>
+                        <outlet property="mainImageView" destination="cVK-eh-Jok" id="ct9-9t-Lba"/>
+                        <outlet property="mainView" destination="nG9-gh-Ct5" id="ET9-Ep-7eq"/>
+                    </connections>
+                </customObject>
+                <customView id="nG9-gh-Ct5">
+                    <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <subviews>
+                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-eh-Jok" customClass="ImageAspectFillView" customModule="Tahm" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="40" width="200" height="160"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="200" id="OV7-Ym-yAd"/>
+                                <constraint firstAttribute="height" constant="160" id="UPb-1S-m8K"/>
+                            </constraints>
+                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="pic" id="Ikn-fa-yW0"/>
+                        </imageView>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="hGg-yx-FWR">
+                            <rect key="frame" x="10" y="10" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="RLP-AD-RMF"/>
+                                <constraint firstAttribute="width" constant="20" id="VRW-Gh-Tb0"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="setting" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="Ifj-2Y-atf">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="TbE-8D-YjM">
+                            <rect key="frame" x="170" y="10" width="20" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="0cj-68-deY"/>
+                                <constraint firstAttribute="width" constant="20" id="ahX-j6-LpZ"/>
+                            </constraints>
+                            <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="exit" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="kkG-aI-Auq">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="cVK-eh-Jok" firstAttribute="leading" secondItem="nG9-gh-Ct5" secondAttribute="leading" id="05u-5K-14a"/>
+                        <constraint firstAttribute="trailing" secondItem="TbE-8D-YjM" secondAttribute="trailing" constant="10" id="KJu-hD-uWC"/>
+                        <constraint firstItem="hGg-yx-FWR" firstAttribute="top" secondItem="cVK-eh-Jok" secondAttribute="bottom" constant="10" id="MgG-Sq-mXK"/>
+                        <constraint firstItem="cVK-eh-Jok" firstAttribute="top" secondItem="nG9-gh-Ct5" secondAttribute="top" id="YCK-ly-z9Z"/>
+                        <constraint firstItem="TbE-8D-YjM" firstAttribute="top" secondItem="cVK-eh-Jok" secondAttribute="bottom" constant="10" id="nLr-X5-pa8"/>
+                        <constraint firstItem="hGg-yx-FWR" firstAttribute="leading" secondItem="nG9-gh-Ct5" secondAttribute="leading" constant="10" id="oRo-Rd-nFJ"/>
+                    </constraints>
+                </customView>
+            </objects>
+            <point key="canvasLocation" x="75" y="0.0"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="exit" width="64" height="64"/>
+        <image name="pic" width="2244" height="1264"/>
+        <image name="setting" width="64" height="64"/>
+    </resources>
+</document>
