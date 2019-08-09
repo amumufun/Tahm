@@ -44,6 +44,19 @@ class StatusMenuController: NSObject {
         image?.isTemplate = true
         button.image = image
         
+        let buttonWindowFrame = button.window!.frame
+        let statusItemFrame = NSMakeRect(0.0, 0.0, buttonWindowFrame.width, buttonWindowFrame.height)
+        let dropView = StatusMenuDropView(frame: statusItemFrame)
+        dropView.statusItemButton = button
+        dropView.delegate = self
+        button.addSubview(dropView)
+        
+        let loadingSpinner = NSProgressIndicator(frame: statusItemFrame)
+        loadingSpinner.style = .spinning
+        loadingSpinner.startAnimation(self)
+        loadingSpinner.isHidden = true
+        button.addSubview(loadingSpinner)
+        
         mainView.wantsLayer = true
         mainView.layer?.cornerRadius = 5.0
         mainView.layer?.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -52,9 +65,9 @@ class StatusMenuController: NSObject {
         
         mainImageView.image = NSImage(named: "pic")
         
-        NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { (event) -> NSEvent? in
+        NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] (event) -> NSEvent? in
             if event.window == button.window {
-                self.toggleMainWindow(button)
+                self?.toggleMainWindow(button)
                 return nil
             }
             return event
@@ -91,4 +104,10 @@ class StatusMenuController: NSObject {
     }
     
     
+}
+
+extension StatusMenuController: StatusMenuDropViewDelegate {
+    func uploadImage(_ urls: [URL]) {
+        print(urls)
+    }
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A322CD3022FD15A50048B9B0 /* StatusMenuDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */; };
 		A3918E6022F8041500C3DAE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E5F22F8041500C3DAE4 /* AppDelegate.swift */; };
 		A3918E6422F8041600C3DAE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3918E6322F8041600C3DAE4 /* Assets.xcassets */; };
 		A3918E6722F8041600C3DAE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3918E6522F8041600C3DAE4 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuDropView.swift; sourceTree = "<group>"; };
 		A3918E5C22F8041500C3DAE4 /* Tahm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tahm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3918E5F22F8041500C3DAE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3918E6322F8041600C3DAE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -64,6 +66,7 @@
 				A3918E6822F8041600C3DAE4 /* Info.plist */,
 				A3918E6922F8041600C3DAE4 /* Tahm.entitlements */,
 				A3918E6F22F8048700C3DAE4 /* StatusMenuController.swift */,
+				A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */,
 			);
 			path = Tahm;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A322CD3022FD15A50048B9B0 /* StatusMenuDropView.swift in Sources */,
 				A3918E7322F8144500C3DAE4 /* EventMonitor.swift in Sources */,
 				A3918E7522F821E600C3DAE4 /* ImageAspectFillView.swift in Sources */,
 				A3918E7022F8048700C3DAE4 /* StatusMenuController.swift in Sources */,
@@ -219,7 +223,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -274,7 +278,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
