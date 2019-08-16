@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		911FFB30F800D4C0D8FCF039 /* Pods_Tahm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC515ED743A8EC6CBB9BE1 /* Pods_Tahm.framework */; };
+		A30F5B9C2305669D002FEF84 /* UploadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30F5B9B2305669D002FEF84 /* UploadResult.swift */; };
 		A322CD3022FD15A50048B9B0 /* StatusMenuDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */; };
 		A3918E6022F8041500C3DAE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E5F22F8041500C3DAE4 /* AppDelegate.swift */; };
 		A3918E6422F8041600C3DAE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3918E6322F8041600C3DAE4 /* Assets.xcassets */; };
@@ -14,9 +16,14 @@
 		A3918E7022F8048700C3DAE4 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E6F22F8048700C3DAE4 /* StatusMenuController.swift */; };
 		A3918E7322F8144500C3DAE4 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E7222F8144500C3DAE4 /* EventMonitor.swift */; };
 		A3918E7522F821E600C3DAE4 /* ImageAspectFillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E7422F821E600C3DAE4 /* ImageAspectFillView.swift */; };
+		A3C4F4412303FB6A00C3BF48 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4F4402303FB6A00C3BF48 /* FileUtil.swift */; };
+		A3C4F443230400A100C3BF48 /* UploadClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4F442230400A100C3BF48 /* UploadClient.swift */; };
+		A3C8973A23010F03006EA36D /* AliyunOSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C8973923010F03006EA36D /* AliyunOSS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9BEC515ED743A8EC6CBB9BE1 /* Pods_Tahm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tahm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A30F5B9B2305669D002FEF84 /* UploadResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResult.swift; sourceTree = "<group>"; };
 		A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuDropView.swift; sourceTree = "<group>"; };
 		A3918E5C22F8041500C3DAE4 /* Tahm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tahm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3918E5F22F8041500C3DAE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -27,6 +34,11 @@
 		A3918E6F22F8048700C3DAE4 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		A3918E7222F8144500C3DAE4 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		A3918E7422F821E600C3DAE4 /* ImageAspectFillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAspectFillView.swift; sourceTree = "<group>"; };
+		A3C4F4402303FB6A00C3BF48 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
+		A3C4F442230400A100C3BF48 /* UploadClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadClient.swift; sourceTree = "<group>"; };
+		A3C8973923010F03006EA36D /* AliyunOSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunOSS.swift; sourceTree = "<group>"; };
+		D3880B88D0708C635CB66871 /* Pods-Tahm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tahm.debug.xcconfig"; path = "Target Support Files/Pods-Tahm/Pods-Tahm.debug.xcconfig"; sourceTree = "<group>"; };
+		FBEF93364D9B24A44CC6A87B /* Pods-Tahm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tahm.release.xcconfig"; path = "Target Support Files/Pods-Tahm/Pods-Tahm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,17 +46,45 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				911FFB30F800D4C0D8FCF039 /* Pods_Tahm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6D079441E04F9D035BAD9292 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9BEC515ED743A8EC6CBB9BE1 /* Pods_Tahm.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A342D82022FD889000D17125 /* Plugins */ = {
+			isa = PBXGroup;
+			children = (
+				A3C8973923010F03006EA36D /* AliyunOSS.swift */,
+			);
+			path = Plugins;
+			sourceTree = "<group>";
+		};
+		A37E6928230683E9001D674E /* StatusMenu */ = {
+			isa = PBXGroup;
+			children = (
+				A3918E6F22F8048700C3DAE4 /* StatusMenuController.swift */,
+				A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */,
+			);
+			path = StatusMenu;
+			sourceTree = "<group>";
+		};
 		A3918E5322F8041500C3DAE4 = {
 			isa = PBXGroup;
 			children = (
 				A3918E5E22F8041500C3DAE4 /* Tahm */,
 				A3918E5D22F8041500C3DAE4 /* Products */,
+				DAE14EAD4E3FEC0A443AE456 /* Pods */,
+				6D079441E04F9D035BAD9292 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -59,14 +99,14 @@
 		A3918E5E22F8041500C3DAE4 /* Tahm */ = {
 			isa = PBXGroup;
 			children = (
+				A37E6928230683E9001D674E /* StatusMenu */,
+				A342D82022FD889000D17125 /* Plugins */,
 				A3918E7122F8142A00C3DAE4 /* Utils */,
 				A3918E5F22F8041500C3DAE4 /* AppDelegate.swift */,
 				A3918E6322F8041600C3DAE4 /* Assets.xcassets */,
 				A3918E6522F8041600C3DAE4 /* Main.storyboard */,
 				A3918E6822F8041600C3DAE4 /* Info.plist */,
 				A3918E6922F8041600C3DAE4 /* Tahm.entitlements */,
-				A3918E6F22F8048700C3DAE4 /* StatusMenuController.swift */,
-				A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */,
 			);
 			path = Tahm;
 			sourceTree = "<group>";
@@ -76,8 +116,20 @@
 			children = (
 				A3918E7222F8144500C3DAE4 /* EventMonitor.swift */,
 				A3918E7422F821E600C3DAE4 /* ImageAspectFillView.swift */,
+				A3C4F4402303FB6A00C3BF48 /* FileUtil.swift */,
+				A3C4F442230400A100C3BF48 /* UploadClient.swift */,
+				A30F5B9B2305669D002FEF84 /* UploadResult.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		DAE14EAD4E3FEC0A443AE456 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D3880B88D0708C635CB66871 /* Pods-Tahm.debug.xcconfig */,
+				FBEF93364D9B24A44CC6A87B /* Pods-Tahm.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,9 +139,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A3918E6C22F8041600C3DAE4 /* Build configuration list for PBXNativeTarget "Tahm" */;
 			buildPhases = (
+				1DFC9E29C7C1DE69E41B144F /* [CP] Check Pods Manifest.lock */,
 				A3918E5822F8041500C3DAE4 /* Sources */,
 				A3918E5922F8041500C3DAE4 /* Frameworks */,
 				A3918E5A22F8041500C3DAE4 /* Resources */,
+				C150432A0BCAF64927F8F579 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -112,6 +166,11 @@
 				TargetAttributes = {
 					A3918E5B22F8041500C3DAE4 = {
 						CreatedOnToolsVersion = 10.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -145,14 +204,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		1DFC9E29C7C1DE69E41B144F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Tahm-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C150432A0BCAF64927F8F579 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tahm/Pods-Tahm-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tahm/Pods-Tahm-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tahm/Pods-Tahm-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		A3918E5822F8041500C3DAE4 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				A322CD3022FD15A50048B9B0 /* StatusMenuDropView.swift in Sources */,
+				A30F5B9C2305669D002FEF84 /* UploadResult.swift in Sources */,
+				A3C4F4412303FB6A00C3BF48 /* FileUtil.swift in Sources */,
 				A3918E7322F8144500C3DAE4 /* EventMonitor.swift in Sources */,
 				A3918E7522F821E600C3DAE4 /* ImageAspectFillView.swift in Sources */,
+				A3C8973A23010F03006EA36D /* AliyunOSS.swift in Sources */,
+				A3C4F443230400A100C3BF48 /* UploadClient.swift in Sources */,
 				A3918E7022F8048700C3DAE4 /* StatusMenuController.swift in Sources */,
 				A3918E6022F8041500C3DAE4 /* AppDelegate.swift in Sources */,
 			);
@@ -289,6 +394,7 @@
 		};
 		A3918E6D22F8041600C3DAE4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3880B88D0708C635CB66871 /* Pods-Tahm.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Tahm/Tahm.entitlements;
@@ -308,6 +414,7 @@
 		};
 		A3918E6E22F8041600C3DAE4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FBEF93364D9B24A44CC6A87B /* Pods-Tahm.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Tahm/Tahm.entitlements;

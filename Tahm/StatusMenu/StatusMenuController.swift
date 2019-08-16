@@ -7,10 +7,13 @@
 //
 
 import Cocoa
+import Alamofire
 
 class StatusMenuController: NSObject {
 
     var statusItem: NSStatusItem?
+    var statusItemButton: NSStatusBarButton?
+    var progressbar: NSProgressIndicator?
     lazy var mainWindow: NSWindow = {
         let contentRect = NSRect(x: 0, y: 0, width: 200, height: 200)
         let mainWindow = NSWindow(contentRect: contentRect, styleMask: [], backing: .buffered, defer: false)
@@ -33,6 +36,8 @@ class StatusMenuController: NSObject {
     var eventMonitor: EventMonitor?
     @IBOutlet weak var mainImageView: ImageAspectFillView!
     
+    var uploadClient: UploadClient?
+    
     override func awakeFromNib() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         guard let button = statusItem?.button else {
@@ -43,20 +48,36 @@ class StatusMenuController: NSObject {
         let image = NSImage(named: "status-logo")
         image?.isTemplate = true
         button.image = image
+        statusItemButton = button
         
+        configureDragView(button)
+        configureMainWindow(button)
+        
+        uploadClient = UploadClient.getClient(className: "AliyunOSS")
+        uploadClient?.delegate = self
+    }
+    
+    func configureDragView(_ button: NSStatusBarButton) {
         let buttonWindowFrame = button.window!.frame
-        let statusItemFrame = NSMakeRect(0.0, 0.0, buttonWindowFrame.width, buttonWindowFrame.height)
+        let statusItemFrame = NSRect(x: 0, y: 0, width: buttonWindowFrame.width, height: buttonWindowFrame.height)
         let dropView = StatusMenuDropView(frame: statusItemFrame)
         dropView.statusItemButton = button
         dropView.delegate = self
         button.addSubview(dropView)
         
-        let loadingSpinner = NSProgressIndicator(frame: statusItemFrame)
-        loadingSpinner.style = .spinning
-        loadingSpinner.startAnimation(self)
-        loadingSpinner.isHidden = true
-        button.addSubview(loadingSpinner)
-        
+        let progrwssFrame = NSRect(x: (buttonWindowFrame.width - 20) / 2, y: (buttonWindowFrame.height - 20) / 2, width: 20, height: 20)
+        progressbar = NSProgressIndicator(frame: progrwssFrame)
+        progressbar!.style = .spinning
+        progressbar!.minValue = 0
+        progressbar!.maxValue = 1
+        progressbar!.isIndeterminate = false
+        progressbar!.wantsLayer = true
+        progressbar!.layer?.backgroundColor = NSColor.white.cgColor
+        progressbar!.isHidden = true
+        button.addSubview(progressbar!)
+    }
+    
+    func configureMainWindow(_ button: NSStatusBarButton) {
         mainView.wantsLayer = true
         mainView.layer?.cornerRadius = 5.0
         mainView.layer?.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
@@ -66,7 +87,7 @@ class StatusMenuController: NSObject {
         mainImageView.image = NSImage(named: "pic")
         
         NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] (event) -> NSEvent? in
-            if event.window == button.window {
+            if event.window == button.window && button.isEnabled {
                 self?.toggleMainWindow(button)
                 return nil
             }
@@ -103,11 +124,38 @@ class StatusMenuController: NSObject {
         eventMonitor?.stop()
     }
     
+    @IBAction func quit(_ sender: Any) {
+        NSApplication.shared.terminate(sender)
+    }
     
 }
 
 extension StatusMenuController: StatusMenuDropViewDelegate {
     func uploadImage(_ urls: [URL]) {
-        print(urls)
+        uploadStart()
+        uploadClient?.upload(urls)
+    }
+    
+    func uploadStart() {
+        statusItemButton!.isEnabled = false
+        progressbar!.isHidden = false
+    }
+    func uploadComplete() {
+        statusItemButton!.isEnabled = true
+        progressbar!.isHidden = true
+    }
+}
+
+extension StatusMenuController: UploadClientDelegate {
+    func uploadSuccess(result: [UploadResult]) {
+    }
+    
+    func uploadProgress(percentage: Double) {
+        DispatchQueue.main.async {
+            self.progressbar?.doubleValue = percentage
+            if (percentage == 1.0) {
+                self.uploadComplete()
+            }
+        }
     }
 }
