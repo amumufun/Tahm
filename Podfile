@@ -8,5 +8,7 @@ target 'Tahm' do
   # Pods for Tahm
   pod 'Alamofire', '~> 4.8'
   pod 'AliyunOSSiOS'
+  pod 'SnapKit', '~> 5.0'
+  pod 'SwiftHEXColors'
 
 end

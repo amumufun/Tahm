@@ -1,46 +1,56 @@
 //
-//  StatusMenuDropView.swift
+//  DropView.swift
 //  Tahm
 //
-//  Created by Chace on 2019/8/9.
+//  Created by Chace on 2019/8/23.
 //  Copyright © 2019 Chace. All rights reserved.
 //
 
 import Cocoa
+import SwiftHEXColors
 
-protocol StatusMenuDropViewDelegate {
+protocol DropViewDelegate {
     func uploadImage(_ urls: [URL])
 }
 
-class StatusMenuDropView: NSView {
+class DropView: NSView {
     
-    var delegate: StatusMenuDropViewDelegate?
+    let shapeLayer = CAShapeLayer()
+    var delegate: DropViewDelegate?
     
     let acceptableTypes = [NSPasteboard.PasteboardType.fileURL]
     let filteringOptions = [NSPasteboard.ReadingOptionKey.urlReadingContentsConformToTypes: NSImage.imageTypes]
-    var statusItemButton: NSStatusBarButton!
+    
     var isReceivingDrag = false {
         didSet {
             if isReceivingDrag {
-                let image = NSImage(named: "upload")
-                image?.isTemplate = true
-                statusItemButton.image = image
+                shapeLayer.strokeColor = NSColor.selectedControlColor.cgColor
             } else {
-                let image = NSImage(named: "status-logo")
-                image?.isTemplate = true
-                statusItemButton.image = image
+                shapeLayer.strokeColor = NSColor(hexString: "#000", alpha: 0.4)?.cgColor
             }
         }
     }
-    
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        
-        registerForDraggedTypes(acceptableTypes)
+
+    override func draw(_ dirtyRect: NSRect) {
+        super.draw(dirtyRect)
+
+        // Drawing code here.
     }
     
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
+    override func awakeFromNib() {
+        self.wantsLayer = true
+        self.layer?.cornerRadius = 10
+
+        shapeLayer.strokeColor = NSColor(hexString: "#000", alpha: 0.4)?.cgColor
+        shapeLayer.fillColor = nil
+        shapeLayer.lineWidth = 4
+        shapeLayer.lineDashPattern = [8, 5]
+        let path = CGMutablePath()
+        path.addRoundedRect(in: bounds, cornerWidth: 10, cornerHeight: 10)
+        shapeLayer.path = path
+        self.layer?.addSublayer(shapeLayer)
+        
+        registerForDraggedTypes(acceptableTypes)
     }
     
     func shouldAllowDrag(_ draggingInfo: NSDraggingInfo) -> Bool {
@@ -76,5 +86,6 @@ class StatusMenuDropView: NSView {
         }
         return false
     }
+    
     
 }

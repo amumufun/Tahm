@@ -58,7 +58,7 @@ class AliyunOSS: UploadClient {
                     self.results.append(UploadResult(originalName: url.lastPathComponent, url: "\(self.endPoint).\(self.endPoint)/\(url.lastPathComponent)", uploadTime: date, storage: "AliyunOSS"))
                 }
                 if self.bytesSent == self.totalBytesExpectedToSend {
-                    self.delegate?.uploadSuccess(result: self.results)
+                    self.delegate?.uploadSuccess(results: self.results)
                 }
                 return nil
             })

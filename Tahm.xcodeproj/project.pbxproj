@@ -8,23 +8,40 @@
 
 /* Begin PBXBuildFile section */
 		911FFB30F800D4C0D8FCF039 /* Pods_Tahm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC515ED743A8EC6CBB9BE1 /* Pods_Tahm.framework */; };
+		A3077F89230AAC2800B82B38 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3077F88230AAC2800B82B38 /* CoreDataManager.swift */; };
+		A3077F8C230AAC7200B82B38 /* Tahm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3077F8A230AAC7200B82B38 /* Tahm.xcdatamodeld */; };
 		A30F5B9C2305669D002FEF84 /* UploadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30F5B9B2305669D002FEF84 /* UploadResult.swift */; };
+		A31E8691230E7C7900877110 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31E8690230E7C7900877110 /* MainViewController.swift */; };
 		A322CD3022FD15A50048B9B0 /* StatusMenuDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */; };
+		A35034142313C42C00DD6E41 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35034132313C42C00DD6E41 /* Utils.swift */; };
+		A3877068230F87580014AD18 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3877067230F87580014AD18 /* TabViewController.swift */; };
+		A387706B230FE8900014AD18 /* UploadTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387706A230FE8900014AD18 /* UploadTabViewController.swift */; };
+		A387706E230FF4B50014AD18 /* DropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A387706D230FF4B50014AD18 /* DropView.swift */; };
 		A3918E6022F8041500C3DAE4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E5F22F8041500C3DAE4 /* AppDelegate.swift */; };
 		A3918E6422F8041600C3DAE4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A3918E6322F8041600C3DAE4 /* Assets.xcassets */; };
 		A3918E6722F8041600C3DAE4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A3918E6522F8041600C3DAE4 /* Main.storyboard */; };
 		A3918E7022F8048700C3DAE4 /* StatusMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E6F22F8048700C3DAE4 /* StatusMenuController.swift */; };
 		A3918E7322F8144500C3DAE4 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E7222F8144500C3DAE4 /* EventMonitor.swift */; };
 		A3918E7522F821E600C3DAE4 /* ImageAspectFillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E7422F821E600C3DAE4 /* ImageAspectFillView.swift */; };
+		A39ED2DB230BE43C00F2BAB7 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39ED2DA230BE43C00F2BAB7 /* MainWindowController.swift */; };
 		A3C4F4412303FB6A00C3BF48 /* FileUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4F4402303FB6A00C3BF48 /* FileUtil.swift */; };
 		A3C4F443230400A100C3BF48 /* UploadClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4F442230400A100C3BF48 /* UploadClient.swift */; };
+		A3C55F4C230D37340072EED0 /* MenuTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C55F4B230D37340072EED0 /* MenuTableCellView.swift */; };
+		A3C55F4E230D3D330072EED0 /* MenuTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C55F4D230D3D330072EED0 /* MenuTable.swift */; };
 		A3C8973A23010F03006EA36D /* AliyunOSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C8973923010F03006EA36D /* AliyunOSS.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9BEC515ED743A8EC6CBB9BE1 /* Pods_Tahm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tahm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A3077F88230AAC2800B82B38 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A3077F8B230AAC7200B82B38 /* Tahm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tahm.xcdatamodel; sourceTree = "<group>"; };
 		A30F5B9B2305669D002FEF84 /* UploadResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResult.swift; sourceTree = "<group>"; };
+		A31E8690230E7C7900877110 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuDropView.swift; sourceTree = "<group>"; };
+		A35034132313C42C00DD6E41 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		A3877067230F87580014AD18 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		A387706A230FE8900014AD18 /* UploadTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadTabViewController.swift; sourceTree = "<group>"; };
+		A387706D230FF4B50014AD18 /* DropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropView.swift; sourceTree = "<group>"; };
 		A3918E5C22F8041500C3DAE4 /* Tahm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tahm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A3918E5F22F8041500C3DAE4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A3918E6322F8041600C3DAE4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -34,8 +51,11 @@
 		A3918E6F22F8048700C3DAE4 /* StatusMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuController.swift; sourceTree = "<group>"; };
 		A3918E7222F8144500C3DAE4 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		A3918E7422F821E600C3DAE4 /* ImageAspectFillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAspectFillView.swift; sourceTree = "<group>"; };
+		A39ED2DA230BE43C00F2BAB7 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		A3C4F4402303FB6A00C3BF48 /* FileUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileUtil.swift; sourceTree = "<group>"; };
 		A3C4F442230400A100C3BF48 /* UploadClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadClient.swift; sourceTree = "<group>"; };
+		A3C55F4B230D37340072EED0 /* MenuTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableCellView.swift; sourceTree = "<group>"; };
+		A3C55F4D230D3D330072EED0 /* MenuTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTable.swift; sourceTree = "<group>"; };
 		A3C8973923010F03006EA36D /* AliyunOSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunOSS.swift; sourceTree = "<group>"; };
 		D3880B88D0708C635CB66871 /* Pods-Tahm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tahm.debug.xcconfig"; path = "Target Support Files/Pods-Tahm/Pods-Tahm.debug.xcconfig"; sourceTree = "<group>"; };
 		FBEF93364D9B24A44CC6A87B /* Pods-Tahm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tahm.release.xcconfig"; path = "Target Support Files/Pods-Tahm/Pods-Tahm.release.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +98,23 @@
 			path = StatusMenu;
 			sourceTree = "<group>";
 		};
+		A3877069230FE86E0014AD18 /* Tabs */ = {
+			isa = PBXGroup;
+			children = (
+				A387706C230FF4910014AD18 /* Upload */,
+			);
+			path = Tabs;
+			sourceTree = "<group>";
+		};
+		A387706C230FF4910014AD18 /* Upload */ = {
+			isa = PBXGroup;
+			children = (
+				A387706A230FE8900014AD18 /* UploadTabViewController.swift */,
+				A387706D230FF4B50014AD18 /* DropView.swift */,
+			);
+			path = Upload;
+			sourceTree = "<group>";
+		};
 		A3918E5322F8041500C3DAE4 = {
 			isa = PBXGroup;
 			children = (
@@ -99,19 +136,22 @@
 		A3918E5E22F8041500C3DAE4 /* Tahm */ = {
 			isa = PBXGroup;
 			children = (
+				A3877069230FE86E0014AD18 /* Tabs */,
+				A3C55F4A230D36E90072EED0 /* MainWindow */,
 				A37E6928230683E9001D674E /* StatusMenu */,
 				A342D82022FD889000D17125 /* Plugins */,
-				A3918E7122F8142A00C3DAE4 /* Utils */,
+				A3918E7122F8142A00C3DAE4 /* Other */,
 				A3918E5F22F8041500C3DAE4 /* AppDelegate.swift */,
 				A3918E6322F8041600C3DAE4 /* Assets.xcassets */,
 				A3918E6522F8041600C3DAE4 /* Main.storyboard */,
 				A3918E6822F8041600C3DAE4 /* Info.plist */,
 				A3918E6922F8041600C3DAE4 /* Tahm.entitlements */,
+				A3077F8A230AAC7200B82B38 /* Tahm.xcdatamodeld */,
 			);
 			path = Tahm;
 			sourceTree = "<group>";
 		};
-		A3918E7122F8142A00C3DAE4 /* Utils */ = {
+		A3918E7122F8142A00C3DAE4 /* Other */ = {
 			isa = PBXGroup;
 			children = (
 				A3918E7222F8144500C3DAE4 /* EventMonitor.swift */,
@@ -119,8 +159,22 @@
 				A3C4F4402303FB6A00C3BF48 /* FileUtil.swift */,
 				A3C4F442230400A100C3BF48 /* UploadClient.swift */,
 				A30F5B9B2305669D002FEF84 /* UploadResult.swift */,
+				A3077F88230AAC2800B82B38 /* CoreDataManager.swift */,
+				A35034132313C42C00DD6E41 /* Utils.swift */,
 			);
-			path = Utils;
+			path = Other;
+			sourceTree = "<group>";
+		};
+		A3C55F4A230D36E90072EED0 /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				A39ED2DA230BE43C00F2BAB7 /* MainWindowController.swift */,
+				A31E8690230E7C7900877110 /* MainViewController.swift */,
+				A3C55F4D230D3D330072EED0 /* MenuTable.swift */,
+				A3C55F4B230D37340072EED0 /* MenuTableCellView.swift */,
+				A3877067230F87580014AD18 /* TabViewController.swift */,
+			);
+			path = MainWindow;
 			sourceTree = "<group>";
 		};
 		DAE14EAD4E3FEC0A443AE456 /* Pods */ = {
@@ -253,13 +307,23 @@
 			files = (
 				A322CD3022FD15A50048B9B0 /* StatusMenuDropView.swift in Sources */,
 				A30F5B9C2305669D002FEF84 /* UploadResult.swift in Sources */,
+				A39ED2DB230BE43C00F2BAB7 /* MainWindowController.swift in Sources */,
+				A3C55F4C230D37340072EED0 /* MenuTableCellView.swift in Sources */,
 				A3C4F4412303FB6A00C3BF48 /* FileUtil.swift in Sources */,
 				A3918E7322F8144500C3DAE4 /* EventMonitor.swift in Sources */,
 				A3918E7522F821E600C3DAE4 /* ImageAspectFillView.swift in Sources */,
 				A3C8973A23010F03006EA36D /* AliyunOSS.swift in Sources */,
+				A3877068230F87580014AD18 /* TabViewController.swift in Sources */,
+				A3077F8C230AAC7200B82B38 /* Tahm.xcdatamodeld in Sources */,
+				A31E8691230E7C7900877110 /* MainViewController.swift in Sources */,
+				A3C55F4E230D3D330072EED0 /* MenuTable.swift in Sources */,
 				A3C4F443230400A100C3BF48 /* UploadClient.swift in Sources */,
 				A3918E7022F8048700C3DAE4 /* StatusMenuController.swift in Sources */,
+				A35034142313C42C00DD6E41 /* Utils.swift in Sources */,
+				A3077F89230AAC2800B82B38 /* CoreDataManager.swift in Sources */,
 				A3918E6022F8041500C3DAE4 /* AppDelegate.swift in Sources */,
+				A387706B230FE8900014AD18 /* UploadTabViewController.swift in Sources */,
+				A387706E230FF4B50014AD18 /* DropView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -454,6 +518,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		A3077F8A230AAC7200B82B38 /* Tahm.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				A3077F8B230AAC7200B82B38 /* Tahm.xcdatamodel */,
+			);
+			currentVersion = A3077F8B230AAC7200B82B38 /* Tahm.xcdatamodel */;
+			path = Tahm.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = A3918E5422F8041500C3DAE4 /* Project object */;
 }

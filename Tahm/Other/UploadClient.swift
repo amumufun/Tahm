@@ -10,7 +10,7 @@ import Foundation
 
 protocol UploadClientDelegate {
     func uploadProgress(percentage: Double)
-    func uploadSuccess(result: [UploadResult])
+    func uploadSuccess(results: [UploadResult])
 }
 
 class UploadClient: NSObject {

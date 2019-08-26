@@ -14,16 +14,17 @@ class StatusMenuController: NSObject {
     var statusItem: NSStatusItem?
     var statusItemButton: NSStatusBarButton?
     var progressbar: NSProgressIndicator?
-    lazy var mainWindow: NSWindow = {
+    lazy var statusBarWindow: NSWindow = {
         let contentRect = NSRect(x: 0, y: 0, width: 200, height: 200)
-        let mainWindow = NSWindow(contentRect: contentRect, styleMask: [], backing: .buffered, defer: false)
-        mainWindow.hasShadow = true
-        mainWindow.isOpaque = false
-        mainWindow.level = NSWindow.Level.statusBar
-        mainWindow.backgroundColor = NSColor.clear
-        return mainWindow
+        let statusBarWindow = NSWindow(contentRect: contentRect, styleMask: [], backing: .buffered, defer: false)
+        statusBarWindow.hasShadow = true
+        statusBarWindow.isOpaque = false
+        statusBarWindow.level = NSWindow.Level.statusBar
+        statusBarWindow.backgroundColor = NSColor.clear
+        statusBarWindow.animationBehavior = NSWindow.AnimationBehavior.utilityWindow
+        return statusBarWindow
     }()
-    @IBOutlet weak var mainView: NSView!
+    @IBOutlet weak var statusBarWindowView: NSView!
     var isOpen: Bool = false {
         didSet {
             if isOpen {
@@ -34,9 +35,21 @@ class StatusMenuController: NSObject {
         }
     }
     var eventMonitor: EventMonitor?
-    @IBOutlet weak var mainImageView: ImageAspectFillView!
+    @IBOutlet weak var statusBarImage: ImageAspectFillView!
     
     var uploadClient: UploadClient?
+    lazy var coreDataManager: CoreDataManager = {
+        return CoreDataManager()
+    }()
+    
+    lazy var mainWindowController: MainWindowController? = {
+        let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+        let id = NSStoryboard.SceneIdentifier("MainWindowController")
+        guard let controller = storyboard.instantiateController(withIdentifier: id) as? MainWindowController else {
+            return nil
+        }
+        return controller
+    }()
     
     override func awakeFromNib() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -51,7 +64,7 @@ class StatusMenuController: NSObject {
         statusItemButton = button
         
         configureDragView(button)
-        configureMainWindow(button)
+        configureStatusBarWindow(button)
         
         uploadClient = UploadClient.getClient(className: "AliyunOSS")
         uploadClient?.delegate = self
@@ -77,14 +90,14 @@ class StatusMenuController: NSObject {
         button.addSubview(progressbar!)
     }
     
-    func configureMainWindow(_ button: NSStatusBarButton) {
-        mainView.wantsLayer = true
-        mainView.layer?.cornerRadius = 5.0
-        mainView.layer?.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-        mainView.layer?.backgroundColor = NSColor.white.cgColor
-        mainWindow.contentView = mainView
+    func configureStatusBarWindow(_ button: NSStatusBarButton) {
+        statusBarWindowView.wantsLayer = true
+        statusBarWindowView.layer?.cornerRadius = 5.0
+        statusBarWindowView.layer?.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+        statusBarWindowView.layer?.backgroundColor = NSColor.white.cgColor
+        statusBarWindow.contentView = statusBarWindowView
         
-        mainImageView.image = NSImage(named: "pic")
+        statusBarImage.image = NSImage(named: "pic")
         
         NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] (event) -> NSEvent? in
             if event.window == button.window && button.isEnabled {
@@ -95,14 +108,14 @@ class StatusMenuController: NSObject {
         }
         
         eventMonitor = EventMonitor(mask: [.leftMouseDown, .rightMouseDown]) { [weak self] event in
-            if let strongSelf = self, strongSelf.mainWindow.isVisible {
+            if let strongSelf = self, strongSelf.statusBarWindow.isVisible {
                 strongSelf.closeMainWindow(event)
             }
         }
     }
     
     func toggleMainWindow(_ sender: NSButton) {
-        if mainWindow.isVisible && sender.window?.screen == mainWindow.screen {
+        if statusBarWindow.isVisible && sender.window?.screen == statusBarWindow.screen {
             closeMainWindow(sender)
         } else {
             showMainWindow(sender)
@@ -111,21 +124,27 @@ class StatusMenuController: NSObject {
     
     func showMainWindow(_ sender: NSButton) {
         if let frame = sender.window?.frame {
-            mainWindow.setFrameOrigin(NSMakePoint(frame.minX, frame.minY - mainWindow.frame.height))
-            mainWindow.makeKeyAndOrderFront(sender)
+            statusBarWindow.setFrameOrigin(NSMakePoint(frame.minX, frame.minY - statusBarWindow.frame.height))
+            statusBarWindow.makeKeyAndOrderFront(sender)
             isOpen = true
             eventMonitor?.start()
         }
     }
     
     func closeMainWindow(_ sender: Any?) {
-        mainWindow.orderOut(sender)
+        statusBarWindow.orderOut(sender)
         isOpen = false
         eventMonitor?.stop()
     }
     
     @IBAction func quit(_ sender: Any) {
         NSApplication.shared.terminate(sender)
+    }
+    
+    @IBAction func showMainWindow(_ sender: Any) {
+        mainWindowController?.window?.makeKeyAndOrderFront(sender)
+        NSApp.setActivationPolicy(.regular)
+        closeMainWindow(sender)
     }
     
 }
@@ -140,22 +159,39 @@ extension StatusMenuController: StatusMenuDropViewDelegate {
         statusItemButton!.isEnabled = false
         progressbar!.isHidden = false
     }
+    
     func uploadComplete() {
-        statusItemButton!.isEnabled = true
-        progressbar!.isHidden = true
+        DispatchQueue.main.async {
+            self.statusItemButton!.isEnabled = true
+            self.progressbar!.isHidden = true
+        }
     }
 }
 
 extension StatusMenuController: UploadClientDelegate {
-    func uploadSuccess(result: [UploadResult]) {
+    func uploadSuccess(results: [UploadResult]) {
+        var urls: [String] = []
+        for item in results {
+            let pic = NSEntityDescription.insertNewObject(forEntityName: "Pic", into: self.coreDataManager.managedObjectContext) as! Pic
+            pic.originalName = item.originalName
+            pic.uploadTime = item.uploadTime
+            pic.url = item.url
+            pic.storage = item.storage
+            
+            urls.append(pic.url!)
+        }
+        self.coreDataManager.saveAction(nil)
+        
+        // 通知
+        Utils.showNotification(message: "\(results.count)条图片地址已复制到剪贴板", title: "上传成功")
+        // 复制到剪贴板
+        Utils.copyToPasteboard(string: urls.joined(separator: "\n"))
+        self.uploadComplete()
     }
     
     func uploadProgress(percentage: Double) {
         DispatchQueue.main.async {
             self.progressbar?.doubleValue = percentage
-            if (percentage == 1.0) {
-                self.uploadComplete()
-            }
         }
     }
 }
