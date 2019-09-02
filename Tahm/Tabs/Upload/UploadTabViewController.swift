@@ -19,6 +19,8 @@ class UploadTabViewController: NSViewController {
     @IBOutlet weak var progressBar: NSProgressIndicator!
     @IBOutlet weak var dropView: DropView!
     
+    let prefs = Preferences()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -32,25 +34,18 @@ class UploadTabViewController: NSViewController {
 }
 
 extension UploadTabViewController: DropViewDelegate {
-    func uploadImage(_ urls: [URL]) {        
-        uploadStart()
+    func uploadImage(_ urls: [URL]) {
         uploadClient?.upload(urls)
-    }
-    
-    func uploadStart() {
-        label.isHidden = true
-        progressBar.isHidden = false
-    }
-    
-    func uploadComplete() {
-        DispatchQueue.main.async {
-            self.label.isHidden = false
-            self.progressBar.isHidden = true
-        }
     }
 }
 
 extension UploadTabViewController: UploadClientDelegate {
+    func uploadStart() {
+        label.isHidden = true
+        progressBar.isHidden = false
+        dropView.isHidden = true
+    }
+    
     func uploadSuccess(results: [UploadResult]) {
         var urls: [String] = []
         for item in results {
@@ -64,11 +59,16 @@ extension UploadTabViewController: UploadClientDelegate {
         }
         self.coreDataManager.saveAction(nil)
         
-        // 通知
-        Utils.showNotification(message: "\(results.count)条图片地址已复制到剪贴板", title: "上传成功")
+        if prefs.uploadMessage {
+            Utils.showNotification(message: "\(results.count)条图片地址已复制到剪贴板", title: "上传成功")
+        }
         // 复制到剪贴板
         Utils.copyToPasteboard(string: urls.joined(separator: "\n"))
-        self.uploadComplete()
+        DispatchQueue.main.async {
+            self.label.isHidden = false
+            self.progressBar.isHidden = true
+            self.dropView.isHidden = false
+        }
     }
     
     func uploadProgress(percentage: Double) {

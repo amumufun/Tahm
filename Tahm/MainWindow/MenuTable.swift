@@ -41,7 +41,7 @@ class MenuTable: NSTableView {
             return
         }
         activeIndex = row
-        NotificationCenter.default.post(name: NSNotification.Name("switchTab"), object: self, userInfo: ["tab": tab])
+        Utils.switchTab(tab: tab)
         self.reloadData()
     }
     

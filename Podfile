@@ -10,5 +10,6 @@ target 'Tahm' do
   pod 'AliyunOSSiOS'
   pod 'SnapKit', '~> 5.0'
   pod 'SwiftHEXColors'
+  pod 'MASShortcut'
 
 end

@@ -51,6 +51,8 @@ class StatusMenuController: NSObject {
         return controller
     }()
     
+    let prefs = Preferences()
+    
     override func awakeFromNib() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         guard let button = statusItem?.button else {
@@ -68,6 +70,8 @@ class StatusMenuController: NSObject {
         
         uploadClient = UploadClient.getClient(className: "AliyunOSS")
         uploadClient?.delegate = self
+        
+        initialization()
     }
     
     func configureDragView(_ button: NSStatusBarButton) {
@@ -147,28 +151,27 @@ class StatusMenuController: NSObject {
         closeMainWindow(sender)
     }
     
+    func initialization() {
+        // 判断第一次启动
+        // 设置默认配置
+        
+        // 设置全局 快捷键
+    }
+    
 }
 
 extension StatusMenuController: StatusMenuDropViewDelegate {
     func uploadImage(_ urls: [URL]) {
-        uploadStart()
         uploadClient?.upload(urls)
     }
-    
+}
+
+extension StatusMenuController: UploadClientDelegate {
     func uploadStart() {
         statusItemButton!.isEnabled = false
         progressbar!.isHidden = false
     }
     
-    func uploadComplete() {
-        DispatchQueue.main.async {
-            self.statusItemButton!.isEnabled = true
-            self.progressbar!.isHidden = true
-        }
-    }
-}
-
-extension StatusMenuController: UploadClientDelegate {
     func uploadSuccess(results: [UploadResult]) {
         var urls: [String] = []
         for item in results {
@@ -182,11 +185,15 @@ extension StatusMenuController: UploadClientDelegate {
         }
         self.coreDataManager.saveAction(nil)
         
-        // 通知
-        Utils.showNotification(message: "\(results.count)条图片地址已复制到剪贴板", title: "上传成功")
+        if prefs.uploadMessage {
+            Utils.showNotification(message: "\(results.count)条图片地址已复制到剪贴板", title: "上传成功")
+        }
         // 复制到剪贴板
         Utils.copyToPasteboard(string: urls.joined(separator: "\n"))
-        self.uploadComplete()
+        DispatchQueue.main.async {
+            self.statusItemButton!.isEnabled = true
+            self.progressbar!.isHidden = true
+        }
     }
     
     func uploadProgress(percentage: Double) {

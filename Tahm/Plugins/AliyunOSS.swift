@@ -9,41 +9,54 @@
 import AliyunOSSiOS
 
 class AliyunOSS: UploadClient {
-    var bucketName = "test12121212"
-    var endPoint = "oss-cn-beijing.aliyuncs.com"
-    var accessKeyId = "LTAIz9SxEpl2RAee"
-    var secretKeyId = "rhAGk1nnr0I2xECUhw4joKAuBPrDi5"
+    
+    var config: AliyunOSSConfig?
+    var client: OSSClient?
     
     var totalBytesExpectedToSend: Int64 = 0
     var bytesSent: Int64 = 0
-    
     var results: [UploadResult] = []
     
+    required init() {
+        super.init()
+        
+        // 检查配置
+        guard checkConfig() else {
+            return
+        }
+        
+        // 初始化
+        initClient()
+    }
+    
     override func upload(_ urls: [URL]) {
+        // 检查配置
+        guard checkConfig() else {
+            return
+        }
+        
+        if client == nil {
+            initClient()
+        }
+        
+        self.delegate?.uploadStart()
+        
         totalBytesExpectedToSend = 0
         bytesSent = 0
-        let provider = OSSCustomSignerCredentialProvider { (content, error) -> String? in
-            let tToken = OSSFederationToken()
-            tToken.tAccessKey = self.accessKeyId
-            tToken.tSecretKey = self.secretKeyId
-            
-            return OSSUtil.sign(content, with: tToken)
-        }
-        let client = OSSClient(endpoint: endPoint, credentialProvider: provider!)
-        
         let opt = BlockOperation()
+        
         for url in urls {
-            totalBytesExpectedToSend += FileUtil.getSizeWithFilePath(url)
+            totalBytesExpectedToSend += Utils.getSizeWithFilePath(url)
             
             let request = OSSMultipartUploadRequest()
             request.uploadingFileURL = url
-            request.bucketName = bucketName
-            request.objectKey = url.lastPathComponent
+            request.bucketName = config!.bucketName
+            request.objectKey = self.getName(lastPathComponent: url.lastPathComponent)
             // request.partSize = 102400
             request.uploadProgress = { (bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) -> Void in
                 self.uploadProgress(bytesSent: bytesSent)
             }
-            let task = client.multipartUpload(request)
+            let task = client!.multipartUpload(request)
             task.continue({ (t) -> Any? in
                 if (t.error != nil) {
                     let error = t.error! as NSError
@@ -55,7 +68,7 @@ class AliyunOSS: UploadClient {
                     let dateFormat = DateFormatter()
                     dateFormat.dateFormat = "E, d MMM yyyy HH:mm:ss 'GMT'"
                     let date = dateFormat.date(from: dateStr)!
-                    self.results.append(UploadResult(originalName: url.lastPathComponent, url: "\(self.endPoint).\(self.endPoint)/\(url.lastPathComponent)", uploadTime: date, storage: "AliyunOSS"))
+                    self.results.append(UploadResult(originalName: url.lastPathComponent, url: "\(self.config!.ssl ? "https" : "http")://\(self.config!.bucketName).\(self.config!.endPoint)/\(url.lastPathComponent)", uploadTime: date, storage: "AliyunOSS"))
                 }
                 if self.bytesSent == self.totalBytesExpectedToSend {
                     self.delegate?.uploadSuccess(results: self.results)
@@ -71,5 +84,30 @@ class AliyunOSS: UploadClient {
         self.bytesSent += bytesSent
         let percentage = Double(self.bytesSent) / Double(totalBytesExpectedToSend)
         self.delegate?.uploadProgress(percentage: percentage)
+    }
+    
+    func checkConfig() -> Bool {
+        if let configData = UserDefaults.standard.retrive(AliyunOSSConfig.self, key: AliyunOSSConfigKey) {
+            if configData.accessKeyId.isEmpty || configData.secretKeyId.isEmpty || configData.bucketName.isEmpty || configData.endPoint.isEmpty {
+                Utils.showNotification(message: "请填写配置必要数据", title: "提示")
+                return false
+            } else {
+                config = configData
+                return true
+            }
+        }
+        Utils.showNotification(message: "请先修改图床配置", title: "提示")
+        return false
+    }
+    
+    func initClient() {
+        let provider = OSSCustomSignerCredentialProvider { (content, error) -> String? in
+            let tToken = OSSFederationToken()
+            tToken.tAccessKey = self.config!.accessKeyId
+            tToken.tSecretKey = self.config!.secretKeyId
+            
+            return OSSUtil.sign(content, with: tToken)
+        }
+        client = OSSClient(endpoint: config!.endPoint, credentialProvider: provider!)
     }
 }

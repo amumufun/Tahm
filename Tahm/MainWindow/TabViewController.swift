@@ -28,10 +28,12 @@ class TabViewController: NSTabViewController {
     @objc func switchTab(nofi: Notification) {
         let tab = nofi.userInfo!["tab"] as! Int
         
-        // 切换动画执行时，左侧菜单无法点击，怎么破
+        // TODO transition似乎在主线程执行，整个窗口无法响应点击
         self.transition(from: tabView.selectedTabViewItem!.viewController!, to: tabViewItems[tab].viewController!, options: tab > self.selectedTabViewItemIndex ? .slideUp : .slideDown) {
             self.tabView.selectTabViewItem(at: tab)
         }
     }
+    
+    // TODO 关闭快捷键cmd + ↑↓ 或实现切换监听事件
     
 }

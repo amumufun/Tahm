@@ -28,7 +28,7 @@ class MenuTableCellView: NSTableCellView {
     
     lazy var menuItemView: NSStackView = {
         let view = NSStackView()
-        view.spacing = 15
+        view.spacing = 12
         return view
     }()
     
@@ -37,7 +37,7 @@ class MenuTableCellView: NSTableCellView {
         label.isEditable = false
         label.isBezeled = false
         label.drawsBackground = false
-        label.font = NSFont.systemFont(ofSize: 16)
+        label.font = NSFont.systemFont(ofSize: 15)
         return label
     }()
     
