@@ -27,6 +27,7 @@ class Utils {
         notification.informativeText = message
         notification.deliveryDate = NSDate(timeIntervalSinceNow: 10) as Date
         // 发送通知
+        // TODO 消息有时候不提示，但是通知列表存在，系统机制？
         NSUserNotificationCenter.default.deliver(notification)
     }
     
@@ -36,8 +37,8 @@ class Utils {
         pasteboard.setString(string, forType: NSPasteboard.PasteboardType.string)
     }
     
-    static func switchTab(tab: Int) {
-        NotificationCenter.default.post(name: NSNotification.Name("switchTab"), object: self, userInfo: ["tab": tab])
+    static func fireNotification(name: String, userInfo: [AnyHashable : Any]? = nil) {
+        NotificationCenter.default.post(name: NSNotification.Name(name), object: self, userInfo: userInfo)
     }
     
     static var firstBoot: Bool {
@@ -46,5 +47,19 @@ class Utils {
             return false
         }
         return true
+    }
+    
+    static func generateLinks(url: String, type: Int) -> String {
+        if url.isEmpty {
+            return ""
+        }
+        if type == 0 {
+            return url
+        } else if type == 1 {
+            return "![](\(url))"
+        } else if type == 2 {
+            return "<img src=\"\(url)\" alt=\"\">"
+        }
+        return ""
     }
 }

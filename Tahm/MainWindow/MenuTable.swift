@@ -41,7 +41,8 @@ class MenuTable: NSTableView {
             return
         }
         activeIndex = row
-        Utils.switchTab(tab: tab)
+        Utils.fireNotification(name: "switchTab", userInfo: ["tab": tab])
+        
         self.reloadData()
     }
     

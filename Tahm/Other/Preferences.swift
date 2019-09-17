@@ -33,6 +33,18 @@ struct Preferences {
             UserDefaults.standard.set(newValue, forKey: "naming")
         }
     }
+    var format: Int {
+        get {
+            let savedFormat = UserDefaults.standard.integer(forKey: "format")
+            if savedFormat >= 0 {
+                return savedFormat
+            }
+            return 0
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "format")
+        }
+    }
     var clipboard: Bool {
         get {
             return UserDefaults.standard.bool(forKey: "clipboard")
@@ -49,12 +61,12 @@ struct Preferences {
             UserDefaults.standard.set(newValue, forKey: "shortcut")
         }
     }
-    var powerBoot: Bool {
+    var startAtLogin: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: "powerBoot")
+            return UserDefaults.standard.bool(forKey: "startAtLogin")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "powerBoot")
+            UserDefaults.standard.set(newValue, forKey: "startAtLogin")
         }
     }
     var uploadMessage: Bool {
@@ -63,14 +75,6 @@ struct Preferences {
         }
         set {
             UserDefaults.standard.set(newValue, forKey: "uploadMessage")
-        }
-    }
-    var compress: Bool {
-        get {
-            return UserDefaults.standard.bool(forKey: "compress")
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: "compress")
         }
     }
 }

@@ -25,10 +25,12 @@ class UploadTabViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         
-        uploadClient = UploadClient.getClient(className: "AliyunOSS")
-        uploadClient?.delegate = self
-        
         dropView.delegate = self
+    }
+    
+    override func viewWillAppear() {
+        uploadClient = UploadClient.getClient(className: cloudConfigList[prefs.cloud].className)
+        uploadClient?.delegate = self
     }
     
 }
@@ -55,15 +57,16 @@ extension UploadTabViewController: UploadClientDelegate {
             pic.url = item.url
             pic.storage = item.storage
             
-            urls.append(pic.url!)
+            urls.append(Utils.generateLinks(url: pic.url!, type: prefs.format))
         }
         self.coreDataManager.saveAction(nil)
         
+        // 复制到剪贴板
+        Utils.copyToPasteboard(string: urls.joined(separator: "\n"))
         if prefs.uploadMessage {
             Utils.showNotification(message: "\(results.count)条图片地址已复制到剪贴板", title: "上传成功")
         }
-        // 复制到剪贴板
-        Utils.copyToPasteboard(string: urls.joined(separator: "\n"))
+        
         DispatchQueue.main.async {
             self.label.isHidden = false
             self.progressBar.isHidden = true

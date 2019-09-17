@@ -8,8 +8,11 @@ target 'Tahm' do
   # Pods for Tahm
   pod 'Alamofire', '~> 4.8'
   pod 'AliyunOSSiOS'
+  pod 'QCloudCOSXML/Transfer'
   pod 'SnapKit', '~> 5.0'
   pod 'SwiftHEXColors'
   pod 'MASShortcut'
+  pod 'LaunchAtLogin'
+  pod 'Kingfisher'
 
 end

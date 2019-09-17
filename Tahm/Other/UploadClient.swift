@@ -37,15 +37,18 @@ class UploadClient: NSObject {
     }
     
     func getName(lastPathComponent: String) -> String {
-        let lastPathArr = lastPathComponent.split(separator: ".")
+        var lastPathArr = lastPathComponent.split(separator: ".")
         let suffix = lastPathArr[lastPathArr.count - 1]
+        lastPathArr.removeLast()
+        let filename = lastPathArr.joined()
         if prefs.naming == 1 {
             let date = Date()
             let dateFormat = DateFormatter()
-            dateFormat.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-            return dateFormat.string(from: date) + "." + suffix
+            dateFormat.dateFormat = "yyyyMMddHHmmss"
+            return filename + dateFormat.string(from: date) + "." + suffix
         } else if prefs.naming == 2 {
-            return UUID().uuidString + "." + suffix
+            let uuid = UUID().uuidString
+            return uuid.replacingOccurrences(of: "-", with: "").lowercased() + "." + suffix
         }
         return lastPathComponent
     }

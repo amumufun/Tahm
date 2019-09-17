@@ -38,6 +38,7 @@ class MenuTableCellView: NSTableCellView {
         label.isBezeled = false
         label.drawsBackground = false
         label.font = NSFont.systemFont(ofSize: 15)
+        label.textColor = NSColor(hexString: "#555")
         return label
     }()
     

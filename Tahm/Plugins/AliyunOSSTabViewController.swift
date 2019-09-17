@@ -1,14 +1,14 @@
 //
-//  AliyunOSSTabViewItem.swift
+//  AliyunOSSTabViewController.swift
 //  Tahm
 //
-//  Created by Chace on 2019/9/2.
+//  Created by Chace on 2019/9/17.
 //  Copyright © 2019 Chace. All rights reserved.
 //
 
 import Cocoa
 
-class AliyunOSSTabViewItem: NSTabViewItem {
+class AliyunOSSTabViewController: NSViewController {
     @IBOutlet weak var bucketName: EditTextField!
     @IBOutlet weak var endPoint: EditTextField!
     @IBOutlet weak var accessKeyId: EditTextField!
@@ -25,8 +25,15 @@ class AliyunOSSTabViewItem: NSTabViewItem {
     }
     
     var conf: AliyunOSSConfig!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do view setup here.
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: NSControl.textDidChangeNotification, object: nil)
+    }
     
-    override func awakeFromNib() {
+    override func viewWillAppear() {
         if let conf = UserDefaults.standard.retrive(AliyunOSSConfig.self, key: AliyunOSSConfigKey) {
             bucketName.stringValue = conf.bucketName
             if bucketName.stringValue.isEmpty {
@@ -61,10 +68,8 @@ class AliyunOSSTabViewItem: NSTabViewItem {
         conf.ssl = sslValue
         UserDefaults.standard.set(conf, key: AliyunOSSConfigKey)
     }
-}
-
-extension AliyunOSSTabViewItem: NSTextFieldDelegate {
-    func controlTextDidChange(_ obj: Notification) {
+    
+    @objc func textDidChange(_ obj: Notification) {
         if let textField = obj.object as? EditTextField {
             if textField == bucketName {
                 if bucketName.stringValue.isEmpty {
@@ -107,4 +112,5 @@ extension AliyunOSSTabViewItem: NSTextFieldDelegate {
             UserDefaults.standard.set(conf, key: AliyunOSSConfigKey)
         }
     }
+    
 }

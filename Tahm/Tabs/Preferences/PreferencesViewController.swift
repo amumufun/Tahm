@@ -8,31 +8,52 @@
 
 import Cocoa
 import MASShortcut
+import LaunchAtLogin
+
+protocol PreferencesDelegate {
+    func cloudChanged(className: String)
+}
 
 class PreferencesViewController: NSViewController {
     
     @IBOutlet weak var shortcutView: MASShortcutView!
     @IBOutlet weak var cloudButton: NSPopUpButton!
-    @IBOutlet weak var filenameRadio: NSButton!
-    @IBOutlet weak var dateRadio: NSButton!
-    @IBOutlet weak var randomRadio: NSButton!
+    @IBOutlet weak var namingFilenameRadio: NSButton!
+    @IBOutlet weak var namingDateRadio: NSButton!
+    @IBOutlet weak var namingRandomRadio: NSButton!
+    @IBOutlet weak var formatURLRadio: NSButton!
+    @IBOutlet weak var formatMarkdownRadio: NSButton!
+    @IBOutlet weak var formatHTMLRadio: NSButton!
     @IBOutlet weak var clipboardCheckbox: NSButtonCell!
-    @IBOutlet weak var powerBootCheckbox: NSButton!
+    @IBOutlet weak var startAtLoginCheckbox: NSButton!
     @IBOutlet weak var uploadMessageCheckbox: NSButton!
-    @IBOutlet weak var compressCheckbox: NSButton!
+
     var namingValue: Int {
         var type = 0
-        if filenameRadio.state == .on {
+        if namingFilenameRadio.state == .on {
             type = 0
-        } else if dateRadio.state == .on {
+        } else if namingDateRadio.state == .on {
             type = 1
-        } else if randomRadio.state == .on {
+        } else if namingRandomRadio.state == .on {
+            type = 2
+        }
+        return type
+    }
+    
+    var formatValue: Int {
+        var type = 0
+        if formatURLRadio.state == .on {
+            type = 0
+        } else if formatMarkdownRadio.state == .on {
+            type = 1
+        } else if formatHTMLRadio.state == .on {
             type = 2
         }
         return type
     }
     
     var prefs = Preferences()
+    var delegate: PreferencesDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,13 +71,24 @@ class PreferencesViewController: NSViewController {
         
         switch prefs.naming {
         case 0:
-            filenameRadio.state = .on
+            formatURLRadio.state = .on
         case 1:
-            dateRadio.state = .on
+            namingDateRadio.state = .on
         case 2:
-            randomRadio.state = .on
+            namingRandomRadio.state = .on
         default:
-            filenameRadio.state = .on
+            namingFilenameRadio.state = .on
+        }
+        
+        switch prefs.format {
+        case 0:
+            formatURLRadio.state = .on
+        case 1:
+            formatMarkdownRadio.state = .on
+        case 2:
+            formatHTMLRadio.state = .on
+        default:
+            formatURLRadio.state = .on
         }
         
         let shortcut = MASShortcut(keyCode: kVK_Space, modifierFlags: .shift)
@@ -67,37 +99,39 @@ class PreferencesViewController: NSViewController {
         shortcutView.shortcutValue = shortcut
         
         clipboardCheckbox.state = prefs.clipboard ? .on : .off
-        powerBootCheckbox.state = prefs.powerBoot ? .on : .off
+        startAtLoginCheckbox.state = prefs.startAtLogin ? .on : .off
         uploadMessageCheckbox.state = prefs.uploadMessage ? .on : .off
-        compressCheckbox.state = prefs.compress ? .on : .off
     }
     
     @IBAction func configCloud(_ sender: NSButton) {
-        Utils.switchTab(tab: TabViews.PreferencesCloud.rawValue)
+        Utils.fireNotification(name: "switchTab", userInfo: ["tab": TabViews.PreferencesCloud.rawValue])
     }
     
     @IBAction func radioChanged(_ sender: Any) {
         prefs.naming = namingValue
     }
     
+    @IBAction func formatRadioChanged(_ sender: Any) {
+        prefs.format = namingValue
+    }
+    
     @IBAction func clipboardCheckboxClick(_ sender: Any) {
         prefs.clipboard = clipboardCheckbox.state == .on ? true : false
     }
     
-    @IBAction func powerBootCheckboxClick(_ sender: Any) {
-        prefs.powerBoot = powerBootCheckbox.state == .on ? true : false
+    @IBAction func startAtLoginCheckboxClick(_ sender: Any) {
+        prefs.startAtLogin = startAtLoginCheckbox.state == .on ? true : false
+        // 设置自启动
+        LaunchAtLogin.isEnabled = prefs.startAtLogin
     }
     
     @IBAction func uploadMessageCheckboxClick(_ sender: Any) {
         prefs.uploadMessage = uploadMessageCheckbox.state == .on ? true : false
     }
-
-    @IBAction func compressCheckboxClick(_ sender: Any) {
-        prefs.compress = compressCheckbox.state == .on ? true : false
-    }
     
     @IBAction func cloudChanged(_ sender: NSPopUpButton) {
         prefs.cloud = sender.indexOfSelectedItem
+        delegate?.cloudChanged(className: cloudConfigList[prefs.cloud].className)
     }
     
 }

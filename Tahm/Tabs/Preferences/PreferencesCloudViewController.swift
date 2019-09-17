@@ -8,12 +8,16 @@
 
 import Cocoa
 
+protocol CloudTabViewDelegate {
+    func switchTab(at: Int)
+}
+
 class PreferencesCloudViewController: NSViewController {
 
     @IBOutlet weak var popupButton: NSPopUpButton!
-    @IBOutlet weak var tabView: NSTabView!
     
     var prefs = Preferences()
+    var tabDelegate: CloudTabViewDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,17 +32,20 @@ class PreferencesCloudViewController: NSViewController {
             popupButton.addItem(withTitle: item.name)
         }
         popupButton.selectItem(at: prefs.cloud)
-        tabView.selectTabViewItem(at: prefs.cloud)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(regisSwitchTab), name: NSNotification.Name("regisSwitchTab"), object: nil)
+    }
+    
+    @objc func regisSwitchTab() {
+        Utils.fireNotification(name: "switchCloudTab", userInfo: ["tab": prefs.cloud])
     }
     
     @IBAction func backToPreferences(_ sender: NSButton) {
-        Utils.switchTab(tab: TabViews.Preferences.rawValue)
+        Utils.fireNotification(name: "switchTab", userInfo: ["tab": TabViews.Preferences.rawValue])
     }
     
     @IBAction func cloudChanged(_ sender: NSPopUpButton) {
-        tabView.selectTabViewItem(at: sender.indexOfSelectedItem)
+        Utils.fireNotification(name: "switchCloudTab", userInfo: ["tab": sender.indexOfSelectedItem])
     }
-    
-    
     
 }

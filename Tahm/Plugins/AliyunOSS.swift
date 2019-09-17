@@ -20,24 +20,20 @@ class AliyunOSS: UploadClient {
     required init() {
         super.init()
         
-        // 检查配置
         guard checkConfig() else {
             return
         }
         
-        // 初始化
         initClient()
     }
     
     override func upload(_ urls: [URL]) {
-        // 检查配置
+
         guard checkConfig() else {
             return
         }
         
-        if client == nil {
-            initClient()
-        }
+        initClient()
         
         self.delegate?.uploadStart()
         
@@ -48,11 +44,11 @@ class AliyunOSS: UploadClient {
         for url in urls {
             totalBytesExpectedToSend += Utils.getSizeWithFilePath(url)
             
+            let filename = self.getName(lastPathComponent: url.lastPathComponent)
             let request = OSSMultipartUploadRequest()
             request.uploadingFileURL = url
             request.bucketName = config!.bucketName
-            request.objectKey = self.getName(lastPathComponent: url.lastPathComponent)
-            // request.partSize = 102400
+            request.objectKey = config!.path + "/" + filename
             request.uploadProgress = { (bytesSent: Int64, totalBytesSent: Int64, totalBytesExpectedToSend: Int64) -> Void in
                 self.uploadProgress(bytesSent: bytesSent)
             }
@@ -68,7 +64,7 @@ class AliyunOSS: UploadClient {
                     let dateFormat = DateFormatter()
                     dateFormat.dateFormat = "E, d MMM yyyy HH:mm:ss 'GMT'"
                     let date = dateFormat.date(from: dateStr)!
-                    self.results.append(UploadResult(originalName: url.lastPathComponent, url: "\(self.config!.ssl ? "https" : "http")://\(self.config!.bucketName).\(self.config!.endPoint)/\(url.lastPathComponent)", uploadTime: date, storage: "AliyunOSS"))
+                    self.results.append(UploadResult(originalName: url.lastPathComponent, url: "\(self.config!.ssl ? "https" : "http")://\(self.config!.bucketName).\(self.config!.endPoint)/\(filename)", uploadTime: date, storage: "AliyunOSS"))
                 }
                 if self.bytesSent == self.totalBytesExpectedToSend {
                     self.delegate?.uploadSuccess(results: self.results)

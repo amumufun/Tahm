@@ -51,7 +51,8 @@ class StatusMenuController: NSObject {
         return controller
     }()
     
-    let prefs = Preferences()
+    var prefs = Preferences()
+    var preferencesViewController = PreferencesViewController()
     
     override func awakeFromNib() {
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
@@ -68,7 +69,9 @@ class StatusMenuController: NSObject {
         configureDragView(button)
         configureStatusBarWindow(button)
         
-        uploadClient = UploadClient.getClient(className: "AliyunOSS")
+        preferencesViewController.delegate = self
+        
+        uploadClient = UploadClient.getClient(className: cloudConfigList[prefs.cloud].className)
         uploadClient?.delegate = self
         
         initialization()
@@ -152,10 +155,12 @@ class StatusMenuController: NSObject {
     }
     
     func initialization() {
-        // 判断第一次启动
-        // 设置默认配置
-        
-        // 设置全局 快捷键
+        if Utils.firstBoot {
+            prefs.uploadMessage = true
+        }
+        if prefs.clipboard {
+            // TODO 设置全局 快捷键
+        }
     }
     
 }
@@ -181,15 +186,16 @@ extension StatusMenuController: UploadClientDelegate {
             pic.url = item.url
             pic.storage = item.storage
             
-            urls.append(pic.url!)
+            urls.append(Utils.generateLinks(url: pic.url!, type: prefs.format))
         }
         self.coreDataManager.saveAction(nil)
         
+        // 复制到剪贴板
+        Utils.copyToPasteboard(string: urls.joined(separator: "\n"))
         if prefs.uploadMessage {
             Utils.showNotification(message: "\(results.count)条图片地址已复制到剪贴板", title: "上传成功")
         }
-        // 复制到剪贴板
-        Utils.copyToPasteboard(string: urls.joined(separator: "\n"))
+        
         DispatchQueue.main.async {
             self.statusItemButton!.isEnabled = true
             self.progressbar!.isHidden = true
@@ -200,5 +206,12 @@ extension StatusMenuController: UploadClientDelegate {
         DispatchQueue.main.async {
             self.progressbar?.doubleValue = percentage
         }
+    }
+}
+
+extension StatusMenuController: PreferencesDelegate {
+    func cloudChanged(className: String) {
+        uploadClient = UploadClient.getClient(className: cloudConfigList[prefs.cloud].className)
+        uploadClient?.delegate = self
     }
 }

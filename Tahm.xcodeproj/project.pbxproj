@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		911FFB30F800D4C0D8FCF039 /* Pods_Tahm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BEC515ED743A8EC6CBB9BE1 /* Pods_Tahm.framework */; };
 		A301D570231D14F4004B532A /* TencentCOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D56F231D14F4004B532A /* TencentCOS.swift */; };
-		A301D574231D1897004B532A /* AliyunOSSTabViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D573231D1897004B532A /* AliyunOSSTabViewItem.swift */; };
 		A301D576231D19EE004B532A /* AliyunOSSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D575231D19EE004B532A /* AliyunOSSConfig.swift */; };
 		A301D578231D2B1F004B532A /* EditTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A301D577231D2B1F004B532A /* EditTextField.swift */; };
 		A3077F89230AAC2800B82B38 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3077F88230AAC2800B82B38 /* CoreDataManager.swift */; };
 		A3077F8C230AAC7200B82B38 /* Tahm.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A3077F8A230AAC7200B82B38 /* Tahm.xcdatamodeld */; };
 		A30F5B9C2305669D002FEF84 /* UploadResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A30F5B9B2305669D002FEF84 /* UploadResult.swift */; };
+		A319987B232A381A00389C97 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319987A232A381A00389C97 /* HistoryViewController.swift */; };
+		A319987E232A386E00389C97 /* CollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A319987C232A386E00389C97 /* CollectionViewItem.swift */; };
+		A319987F232A386E00389C97 /* CollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = A319987D232A386E00389C97 /* CollectionViewItem.xib */; };
 		A31E8691230E7C7900877110 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A31E8690230E7C7900877110 /* MainViewController.swift */; };
 		A322CD3022FD15A50048B9B0 /* StatusMenuDropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */; };
 		A35034142313C42C00DD6E41 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35034132313C42C00DD6E41 /* Utils.swift */; };
@@ -32,22 +34,28 @@
 		A3918E7522F821E600C3DAE4 /* ImageAspectFillView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3918E7422F821E600C3DAE4 /* ImageAspectFillView.swift */; };
 		A39782602313D52700F8F6D5 /* PreferencesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A397825F2313D52700F8F6D5 /* PreferencesViewController.swift */; };
 		A39ED2DB230BE43C00F2BAB7 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A39ED2DA230BE43C00F2BAB7 /* MainWindowController.swift */; };
+		A3AC5E8D232F91B500361CEE /* TencentCOSConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3AC5E8C232F91B500361CEE /* TencentCOSConfig.swift */; };
 		A3C4F443230400A100C3BF48 /* UploadClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C4F442230400A100C3BF48 /* UploadClient.swift */; };
 		A3C55F4C230D37340072EED0 /* MenuTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C55F4B230D37340072EED0 /* MenuTableCellView.swift */; };
 		A3C55F4E230D3D330072EED0 /* MenuTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C55F4D230D3D330072EED0 /* MenuTable.swift */; };
 		A3C8973A23010F03006EA36D /* AliyunOSS.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3C8973923010F03006EA36D /* AliyunOSS.swift */; };
 		A3CFC6C92318D60C00A81AE7 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3CFC6C82318D60C00A81AE7 /* Preferences.swift */; };
+		A3F88F4A2330C81100F29BF5 /* CloudTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F88F492330C81100F29BF5 /* CloudTabViewController.swift */; };
+		A3F88F4C2330CAD700F29BF5 /* AliyunOSSTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F88F4B2330CAD700F29BF5 /* AliyunOSSTabViewController.swift */; };
+		A3F88F4E2330CB5F00F29BF5 /* TencentCOSTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3F88F4D2330CB5F00F29BF5 /* TencentCOSTabViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		9BEC515ED743A8EC6CBB9BE1 /* Pods_Tahm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tahm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A301D56F231D14F4004B532A /* TencentCOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TencentCOS.swift; sourceTree = "<group>"; };
-		A301D573231D1897004B532A /* AliyunOSSTabViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunOSSTabViewItem.swift; sourceTree = "<group>"; };
 		A301D575231D19EE004B532A /* AliyunOSSConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunOSSConfig.swift; sourceTree = "<group>"; };
 		A301D577231D2B1F004B532A /* EditTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextField.swift; sourceTree = "<group>"; };
 		A3077F88230AAC2800B82B38 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A3077F8B230AAC7200B82B38 /* Tahm.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tahm.xcdatamodel; sourceTree = "<group>"; };
 		A30F5B9B2305669D002FEF84 /* UploadResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadResult.swift; sourceTree = "<group>"; };
+		A319987A232A381A00389C97 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		A319987C232A386E00389C97 /* CollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewItem.swift; sourceTree = "<group>"; };
+		A319987D232A386E00389C97 /* CollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionViewItem.xib; sourceTree = "<group>"; };
 		A31E8690230E7C7900877110 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A322CD2F22FD15A50048B9B0 /* StatusMenuDropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusMenuDropView.swift; sourceTree = "<group>"; };
 		A35034132313C42C00DD6E41 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
@@ -68,11 +76,15 @@
 		A3918E7422F821E600C3DAE4 /* ImageAspectFillView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAspectFillView.swift; sourceTree = "<group>"; };
 		A397825F2313D52700F8F6D5 /* PreferencesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesViewController.swift; sourceTree = "<group>"; };
 		A39ED2DA230BE43C00F2BAB7 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		A3AC5E8C232F91B500361CEE /* TencentCOSConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TencentCOSConfig.swift; sourceTree = "<group>"; };
 		A3C4F442230400A100C3BF48 /* UploadClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadClient.swift; sourceTree = "<group>"; };
 		A3C55F4B230D37340072EED0 /* MenuTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableCellView.swift; sourceTree = "<group>"; };
 		A3C55F4D230D3D330072EED0 /* MenuTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTable.swift; sourceTree = "<group>"; };
 		A3C8973923010F03006EA36D /* AliyunOSS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunOSS.swift; sourceTree = "<group>"; };
 		A3CFC6C82318D60C00A81AE7 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		A3F88F492330C81100F29BF5 /* CloudTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudTabViewController.swift; sourceTree = "<group>"; };
+		A3F88F4B2330CAD700F29BF5 /* AliyunOSSTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliyunOSSTabViewController.swift; sourceTree = "<group>"; };
+		A3F88F4D2330CB5F00F29BF5 /* TencentCOSTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TencentCOSTabViewController.swift; sourceTree = "<group>"; };
 		D3880B88D0708C635CB66871 /* Pods-Tahm.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tahm.debug.xcconfig"; path = "Target Support Files/Pods-Tahm/Pods-Tahm.debug.xcconfig"; sourceTree = "<group>"; };
 		FBEF93364D9B24A44CC6A87B /* Pods-Tahm.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tahm.release.xcconfig"; path = "Target Support Files/Pods-Tahm/Pods-Tahm.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,8 +114,10 @@
 			children = (
 				A3C8973923010F03006EA36D /* AliyunOSS.swift */,
 				A301D575231D19EE004B532A /* AliyunOSSConfig.swift */,
-				A301D573231D1897004B532A /* AliyunOSSTabViewItem.swift */,
+				A3F88F4B2330CAD700F29BF5 /* AliyunOSSTabViewController.swift */,
 				A301D56F231D14F4004B532A /* TencentCOS.swift */,
+				A3AC5E8C232F91B500361CEE /* TencentCOSConfig.swift */,
+				A3F88F4D2330CB5F00F29BF5 /* TencentCOSTabViewController.swift */,
 			);
 			path = Plugins;
 			sourceTree = "<group>";
@@ -120,6 +134,7 @@
 		A3877069230FE86E0014AD18 /* Tabs */ = {
 			isa = PBXGroup;
 			children = (
+				A3ECBB06231E4FB0006D4C55 /* History */,
 				A397825E2313D50300F8F6D5 /* Preferences */,
 				A387706C230FF4910014AD18 /* Upload */,
 			);
@@ -193,6 +208,7 @@
 			children = (
 				A397825F2313D52700F8F6D5 /* PreferencesViewController.swift */,
 				A35034722317AF010017936D /* PreferencesCloudViewController.swift */,
+				A3F88F492330C81100F29BF5 /* CloudTabViewController.swift */,
 			);
 			path = Preferences;
 			sourceTree = "<group>";
@@ -207,6 +223,16 @@
 				A3877067230F87580014AD18 /* TabViewController.swift */,
 			);
 			path = MainWindow;
+			sourceTree = "<group>";
+		};
+		A3ECBB06231E4FB0006D4C55 /* History */ = {
+			isa = PBXGroup;
+			children = (
+				A319987A232A381A00389C97 /* HistoryViewController.swift */,
+				A319987C232A386E00389C97 /* CollectionViewItem.swift */,
+				A319987D232A386E00389C97 /* CollectionViewItem.xib */,
+			);
+			path = History;
 			sourceTree = "<group>";
 		};
 		DAE14EAD4E3FEC0A443AE456 /* Pods */ = {
@@ -285,6 +311,7 @@
 			files = (
 				A3918E6422F8041600C3DAE4 /* Assets.xcassets in Resources */,
 				A3918E6722F8041600C3DAE4 /* Main.storyboard in Resources */,
+				A319987F232A386E00389C97 /* CollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,6 +368,7 @@
 				A322CD3022FD15A50048B9B0 /* StatusMenuDropView.swift in Sources */,
 				A30F5B9C2305669D002FEF84 /* UploadResult.swift in Sources */,
 				A39ED2DB230BE43C00F2BAB7 /* MainWindowController.swift in Sources */,
+				A3F88F4A2330C81100F29BF5 /* CloudTabViewController.swift in Sources */,
 				A3C55F4C230D37340072EED0 /* MenuTableCellView.swift in Sources */,
 				A3918E7322F8144500C3DAE4 /* EventMonitor.swift in Sources */,
 				A3918E7522F821E600C3DAE4 /* ImageAspectFillView.swift in Sources */,
@@ -351,14 +379,18 @@
 				A3077F8C230AAC7200B82B38 /* Tahm.xcdatamodeld in Sources */,
 				A31E8691230E7C7900877110 /* MainViewController.swift in Sources */,
 				A301D578231D2B1F004B532A /* EditTextField.swift in Sources */,
+				A3F88F4C2330CAD700F29BF5 /* AliyunOSSTabViewController.swift in Sources */,
 				A3C55F4E230D3D330072EED0 /* MenuTable.swift in Sources */,
 				A3C4F443230400A100C3BF48 /* UploadClient.swift in Sources */,
 				A3918E7022F8048700C3DAE4 /* StatusMenuController.swift in Sources */,
 				A35034142313C42C00DD6E41 /* Utils.swift in Sources */,
 				A301D570231D14F4004B532A /* TencentCOS.swift in Sources */,
+				A3F88F4E2330CB5F00F29BF5 /* TencentCOSTabViewController.swift in Sources */,
+				A319987E232A386E00389C97 /* CollectionViewItem.swift in Sources */,
+				A319987B232A381A00389C97 /* HistoryViewController.swift in Sources */,
 				A39782602313D52700F8F6D5 /* PreferencesViewController.swift in Sources */,
 				A301D576231D19EE004B532A /* AliyunOSSConfig.swift in Sources */,
-				A301D574231D1897004B532A /* AliyunOSSTabViewItem.swift in Sources */,
+				A3AC5E8D232F91B500361CEE /* TencentCOSConfig.swift in Sources */,
 				A3077F89230AAC2800B82B38 /* CoreDataManager.swift in Sources */,
 				A3918E6022F8041500C3DAE4 /* AppDelegate.swift in Sources */,
 				A387706B230FE8900014AD18 /* UploadTabViewController.swift in Sources */,
@@ -511,7 +543,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yinghuoyou.Tahm;
+				PRODUCT_BUNDLE_IDENTIFIER = io.dicolos.Tahm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -533,7 +565,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.yinghuoyou.Tahm;
+				PRODUCT_BUNDLE_IDENTIFIER = io.dicolos.Tahm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
