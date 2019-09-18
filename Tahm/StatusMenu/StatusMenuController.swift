@@ -8,6 +8,7 @@
 
 import Cocoa
 import Alamofire
+import Kingfisher
 
 class StatusMenuController: NSObject {
 
@@ -103,8 +104,6 @@ class StatusMenuController: NSObject {
         statusBarWindowView.layer?.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
         statusBarWindowView.layer?.backgroundColor = NSColor.white.cgColor
         statusBarWindow.contentView = statusBarWindowView
-        
-        statusBarImage.image = NSImage(named: "pic")
         
         NSEvent.addLocalMonitorForEvents(matching: .leftMouseDown) { [weak self] (event) -> NSEvent? in
             if event.window == button.window && button.isEnabled {

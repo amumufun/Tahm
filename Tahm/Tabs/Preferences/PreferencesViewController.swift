@@ -112,7 +112,7 @@ class PreferencesViewController: NSViewController {
     }
     
     @IBAction func formatRadioChanged(_ sender: Any) {
-        prefs.format = namingValue
+        prefs.format = formatValue
     }
     
     @IBAction func clipboardCheckboxClick(_ sender: Any) {

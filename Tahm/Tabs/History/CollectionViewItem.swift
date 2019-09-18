@@ -23,6 +23,7 @@ class CollectionViewItem: NSCollectionViewItem {
         self.view.layer?.backgroundColor = NSColor(hexString: "#ffffff", alpha: 0.5)?.cgColor
         self.view.layer?.borderColor = NSColor.selectedControlColor.cgColor
         self.view.layer?.borderWidth = 0.0
+        self.view.layer?.cornerRadius = 5.0
     }
     
     override var isSelected: Bool {
@@ -34,8 +35,10 @@ class CollectionViewItem: NSCollectionViewItem {
     override var representedObject: Any? {
         didSet {
             if let data = representedObject as? Pic {
-                let url = "\(String(data.url!))\(cloudConfigList[prefs.cloud].suffix)"
-                self.imageAspectView?.kf.setImage(with: URL(string: url))
+                let url = String(data.url!)
+                // 使用Kingfisher压缩大图
+                let processor = DownsamplingImageProcessor(size: CGSize(width: 124.0, height: 120))
+                self.imageAspectView?.kf.setImage(with: URL(string: url), options: [.processor(processor)])
             }
         }
     }

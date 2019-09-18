@@ -28,6 +28,7 @@ class AliyunOSS: UploadClient {
     }
     
     override func upload(_ urls: [URL]) {
+        results = []
 
         guard checkConfig() else {
             return

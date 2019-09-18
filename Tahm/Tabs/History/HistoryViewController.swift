@@ -45,7 +45,6 @@ class HistoryViewController: NSViewController {
         
         do {
             picList = try coreDataManager.managedObjectContext.fetch(request)
-            print("数量 ", picList.count)
             
             if picList.count == 0 {
                 emptyMessage.isHidden = false
@@ -81,8 +80,6 @@ class HistoryViewController: NSViewController {
             return
         }
         for indexPath in selected {
-            // TODO 数据处理，比如拼接后缀、协议
-            
             urls.append(Utils.generateLinks(url: picList[indexPath.item].url!, type: prefs.format))
         }
         Utils.copyToPasteboard(string: urls.joined(separator: "\n"))
@@ -96,29 +93,23 @@ class HistoryViewController: NSViewController {
 extension HistoryViewController: NSCollectionViewDelegateFlowLayout {
     // item 大小
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-        return NSSize(width: 120, height: 100)
+        return NSSize(width: 62, height: 60)
     }
     // 内边距
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, insetForSectionAt section: Int) -> NSEdgeInsets {
-        return NSEdgeInsets(top: 10, left: 10, bottom: 0, right: 10)
+        return NSEdgeInsets(top: 20, left: 15, bottom: 10, right: 15)
     }
     // 行间距
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10.0
+        return 15.0
     }
     // 列间距
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10.0
+        return 15.0
     }
 }
 
 extension HistoryViewController: NSCollectionViewDelegate {
-//    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
-//        print("点击了", collectionView.selectionIndexPaths)
-//    }
-//    func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>) {
-//        print("取消了", collectionView.selectionIndexPaths)
-//    }
 }
 
 extension HistoryViewController: NSCollectionViewDataSource {

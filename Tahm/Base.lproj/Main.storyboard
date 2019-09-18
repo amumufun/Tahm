@@ -64,15 +64,24 @@
                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <subviews>
-                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-eh-Jok" customClass="ImageAspectFillView" customModule="Tahm" customModuleProvider="target">
+                        <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="withinWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="nya-Vd-fOF">
                             <rect key="frame" x="0.0" y="40" width="200" height="160"/>
+                            <subviews>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cVK-eh-Jok" customClass="ImageAspectFillView" customModule="Tahm" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="160"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="default" id="Ikn-fa-yW0"/>
+                                </imageView>
+                            </subviews>
                             <constraints>
-                                <constraint firstAttribute="width" constant="200" id="OV7-Ym-yAd"/>
-                                <constraint firstAttribute="height" constant="160" id="UPb-1S-m8K"/>
+                                <constraint firstItem="cVK-eh-Jok" firstAttribute="leading" secondItem="nya-Vd-fOF" secondAttribute="leading" id="0PC-dT-wsw"/>
+                                <constraint firstAttribute="height" constant="160" id="6ft-ak-rfu"/>
+                                <constraint firstAttribute="bottom" secondItem="cVK-eh-Jok" secondAttribute="bottom" id="f0I-e1-DSS"/>
+                                <constraint firstAttribute="width" constant="200" id="gR0-o8-xad"/>
+                                <constraint firstAttribute="trailing" secondItem="cVK-eh-Jok" secondAttribute="trailing" id="grC-LK-kjJ"/>
+                                <constraint firstItem="cVK-eh-Jok" firstAttribute="top" secondItem="nya-Vd-fOF" secondAttribute="top" id="kIA-AI-2yg"/>
                             </constraints>
-                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" image="pic" id="Ikn-fa-yW0"/>
-                        </imageView>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="hGg-yx-FWR">
+                        </visualEffectView>
+                        <button ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGg-yx-FWR">
                             <rect key="frame" x="10" y="10" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="RLP-AD-RMF"/>
@@ -86,7 +95,7 @@
                                 <action selector="showMainWindow:" target="e7p-QH-s3W" id="1IV-jf-tCN"/>
                             </connections>
                         </button>
-                        <button translatesAutoresizingMaskIntoConstraints="NO" id="TbE-8D-YjM">
+                        <button ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TbE-8D-YjM">
                             <rect key="frame" x="170" y="10" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="0cj-68-deY"/>
@@ -102,11 +111,10 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="cVK-eh-Jok" firstAttribute="leading" secondItem="nG9-gh-Ct5" secondAttribute="leading" id="05u-5K-14a"/>
+                        <constraint firstItem="nya-Vd-fOF" firstAttribute="top" secondItem="nG9-gh-Ct5" secondAttribute="top" id="8E1-xX-rAR"/>
                         <constraint firstAttribute="trailing" secondItem="TbE-8D-YjM" secondAttribute="trailing" constant="10" id="KJu-hD-uWC"/>
-                        <constraint firstItem="hGg-yx-FWR" firstAttribute="top" secondItem="cVK-eh-Jok" secondAttribute="bottom" constant="10" id="MgG-Sq-mXK"/>
-                        <constraint firstItem="cVK-eh-Jok" firstAttribute="top" secondItem="nG9-gh-Ct5" secondAttribute="top" id="YCK-ly-z9Z"/>
-                        <constraint firstItem="TbE-8D-YjM" firstAttribute="top" secondItem="cVK-eh-Jok" secondAttribute="bottom" constant="10" id="nLr-X5-pa8"/>
+                        <constraint firstItem="nya-Vd-fOF" firstAttribute="leading" secondItem="nG9-gh-Ct5" secondAttribute="leading" id="cbh-pS-JIT"/>
+                        <constraint firstAttribute="trailing" secondItem="nya-Vd-fOF" secondAttribute="trailing" id="fVI-Od-90w"/>
                         <constraint firstItem="hGg-yx-FWR" firstAttribute="leading" secondItem="nG9-gh-Ct5" secondAttribute="leading" constant="10" id="oRo-Rd-nFJ"/>
                     </constraints>
                 </customView>
@@ -570,7 +578,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mfz-sm-OJS">
                                 <rect key="frame" x="85" y="144" width="155" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="剪贴板图片上传快捷键" bezelStyle="regularSquare" imagePosition="left" inset="2" id="OaB-Lq-dNr">
+                                <buttonCell key="cell" type="check" title="剪贴板图片上传快捷键" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="OaB-Lq-dNr">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" usesAppearanceFont="YES"/>
                                 </buttonCell>
@@ -1007,7 +1015,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fhY-Ib-tIn">
-                                <rect key="frame" x="56" y="183" width="190" height="36"/>
+                                <rect key="frame" x="18" y="256" width="190" height="24"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="🤔这里还没想好放什么..." id="NsH-9O-9rr">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -1025,9 +1033,9 @@
     </scenes>
     <resources>
         <image name="NSGoBackTemplate" width="9" height="12"/>
+        <image name="default" width="400" height="320"/>
         <image name="exit" width="32" height="32"/>
         <image name="home" width="32" height="32"/>
-        <image name="pic" width="2244" height="1264"/>
         <image name="upload-main" width="200" height="200"/>
     </resources>
 </document>
